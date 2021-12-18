@@ -1,9 +1,17 @@
 import React from "react";
 import SearchIcon from '@material-ui/icons/Search';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { auth } from '../../firebase';
 import './Header.css';
+import { Link } from "react-router-dom";
 
 function Header () {
+
+    const handleAuthentication = () => {
+        auth.signOut();
+        console.log(auth);
+    }
+
     return (
         <div className="header">
             <img 
@@ -18,9 +26,11 @@ function Header () {
                 <SearchIcon className="header__searchIcon"/>
             </div>
             <div className="header__nav">
-                <div className="header__option">
-                    <span className="header__optionLineOne">Logout</span>
-                </div>
+                <Link to='/'>
+                    <div onClick={handleAuthentication} className="header__option">
+                        <span className="header__optionLineOne">Logout</span>
+                    </div>
+                </Link>
                 <div className="header__option">
                     <span className="header__optionLineTwo">Orders</span>
                 </div>
