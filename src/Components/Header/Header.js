@@ -4,12 +4,14 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { auth } from '../../firebase';
 import './Header.css';
 import { Link } from "react-router-dom";
+import { useStateValue } from "../../StateProvider";
 
 function Header () {
+    const [ { user }, dispatch ] = useStateValue();
 
     const handleAuthentication = () => {
-        auth.signOut();
-        console.log(auth);
+        if(user)
+            auth.signOut();
     }
 
     return (
