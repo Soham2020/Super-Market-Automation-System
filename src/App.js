@@ -34,7 +34,7 @@ function App() {
           user ? <Switch>
             <Route path="/header">
               <Header />
-              <h1>home page !!</h1>
+              <h1 style={{ textAlign:"center" }}>home page under progress !!</h1>
             </Route>
             <Route path="/">
               <Login />

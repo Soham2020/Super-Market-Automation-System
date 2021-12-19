@@ -18,7 +18,7 @@ function Header () {
         <div className="header">
             <img 
                 className="header__logo"
-                src="https://raw.githubusercontent.com/logo/amazon/f2c77b71bdf9987bf451f096d3462e0a3d4c1608/images/logo-black.svg"
+                src="https://github.com/jcpandi/snapdeal/blob/master/img/freeze/snapdeallogo.png?raw=true"
             />
             <div className="header__search">
                 <input 
@@ -28,7 +28,7 @@ function Header () {
                 <SearchIcon className="header__searchIcon"/>
             </div>
             <div className="header__nav">
-                <Link to='/'>
+                <Link to='/' style={{ textDecoration: 'none' }}>
                     <div onClick={handleAuthentication} className="header__option">
                         <span className="header__optionLineOne">Logout</span>
                     </div>
