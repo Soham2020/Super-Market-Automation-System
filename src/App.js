@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
+import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
@@ -34,7 +35,7 @@ function App() {
           user ? <Switch>
             <Route path="/header">
               <Header />
-              <h1 style={{ textAlign:"center" }}>home page under progress !!</h1>
+              <Home />
             </Route>
             <Route path="/">
               <Login />
