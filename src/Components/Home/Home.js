@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Product from '../Product/Product';
 import './Home.css';
 import ImageSlider from './ImageSlider';
 import { SliderData } from './SliderData';
+import {db} from '../../firebase';
 
 function Home () {
+    
+    const [ products, setProducts ] = useState([]);
+
+    useEffect(() => {
+        // App component will once run when it gets loaded
+        db.collection('products').onSnapshot(snapshot => {
+            setProducts(snapshot.docs.map(doc => doc.data()))
+        }) 
+    }, [])
     return (
         <div className='home'>
             <div className='home__container'>
@@ -16,11 +26,15 @@ function Home () {
                 <ImageSlider slides = { SliderData } />
                 
                 <div className='home__row'>
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    {
+                        products.map(({ name, price, image }) => (
+                            <Product 
+                                name = { name }
+                                price = { price }
+                                image = { image }
+                            />
+                        ))
+                    }
                 </div>
             </div>
         </div>
