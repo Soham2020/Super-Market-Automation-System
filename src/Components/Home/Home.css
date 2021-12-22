@@ -4,3 +4,17 @@
     margin-bottom: -150px;
     mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0.342));
 } */
+.home {
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1500px;
+}
+
+.home__row {
+    display: flex;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+}

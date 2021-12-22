@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from '../Product/Product';
 import './Home.css';
 import ImageSlider from './ImageSlider';
 import { SliderData } from './SliderData';
@@ -13,6 +14,14 @@ function Home () {
                     alt='banner-1'
                 /> */}
                 <ImageSlider slides = { SliderData } />
+                
+                <div className='home__row'>
+                    <Product />
+                    <Product />
+                    <Product />
+                    <Product />
+                    <Product />
+                </div>
             </div>
         </div>
     )
