@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Cart from "./Components/Cart/Cart";
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
@@ -36,6 +37,10 @@ function App() {
             <Route path="/header">
               <Header />
               <Home />
+            </Route>
+            <Route path="/cart">
+              <Header />
+              <Cart />
             </Route>
             <Route path="/">
               <Login />
