@@ -1,4 +1,6 @@
 import React from "react";
+import Total from "./Total";
+import './Cart.css';
 
 function Cart () {
     return (
@@ -10,7 +12,7 @@ function Cart () {
             </div>
 
             <div className="checkout__right">
-                <h2>Total Amount</h2>
+                <Total />
             </div>
         </div>
     )

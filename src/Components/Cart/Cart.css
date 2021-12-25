@@ -4,3 +4,9 @@
     background-color: white;
     height: max-content;
 }
+
+.checkout__title {
+    margin-right: 900px;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
