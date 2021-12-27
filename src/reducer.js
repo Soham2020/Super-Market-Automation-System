@@ -3,7 +3,9 @@ export const initialState = {
     user: null,
   };
   
-  
+  export const getTotal = (cart) => 
+    cart.reduce((amount, item) => item.price + amount, 0);
+    
   const reducer = (state, action) => {
     console.log(action);
     switch (action.type) {
