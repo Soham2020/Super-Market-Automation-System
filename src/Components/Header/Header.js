@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 
 function Header () {
-    const [ { user }, dispatch ] = useStateValue();
+    const [ { cart, user }, dispatch ] = useStateValue();
 
     const handleAuthentication = () => {
         if(user)
@@ -38,7 +38,7 @@ function Header () {
                 </div>
                 <div className="header__optionBasket">
                     <Link to='/cart'><AddShoppingCartIcon /></Link>
-                    <span className="header__optionLineTwo header__basketCount">0</span>
+                    <span className="header__optionLineTwo header__basketCount">{ cart.length }</span>
                 </div>
             </div>
         </div>
