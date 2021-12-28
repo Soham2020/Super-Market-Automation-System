@@ -14,7 +14,11 @@ export const initialState = {
           ...state,
           cart: [ ...state.cart, action.item ],
         }
-
+      case "REMOVE_FROM_CART":
+        return {
+          ...state,
+          cart: state.cart.filter(item => item.name !== action.name)
+        }
       case "SET_USER":
         return {
           ...state,
