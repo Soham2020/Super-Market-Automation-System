@@ -5,12 +5,13 @@ import { useStateValue } from "../../StateProvider";
 import CartProduct from "./CartProduct";
 
 function Cart () {
-    const [ { cart }, dispatch ] = useStateValue();
+    const [ { cart, user }, dispatch ] = useStateValue();
     return (
         <div className="checkout">
             <div className="checkout__left">
                 <div>
                     <h2 className="checkout__title">Your Cart</h2>
+                    <small>Hello, { user?.email } </small>
                     {
                         cart.map(item => (
                             <CartProduct 
