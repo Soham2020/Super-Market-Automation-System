@@ -1,11 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { useStateValue } from '../../StateProvider';
 import { getTotal } from '../../reducer';
 import './Total.css';
 
 function Total () {
+    const history = useHistory();
     const [ { cart }, dispatch ] = useStateValue();
+    const handleClick = () => {
+        history.push('/payment');
+    }
     return(
         <div className='total'>
             <CurrencyFormat 
@@ -23,7 +28,7 @@ function Total () {
                 intlConfig={{ locale: 'en-IN', currency: 'INR' }}
                 prefix={'Rs '}
             />
-            <button>Proceed to Checkout</button>
+            <button onClick={handleClick}>Proceed to Checkout</button>
         </div>
     )
 }
