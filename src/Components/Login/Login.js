@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
-import { auth, provider, fbprovider } from "../../firebase";
+import { auth, provider, fbprovider, db } from "../../firebase";
 import './Login.css';
 
 function Login () {
@@ -26,29 +26,59 @@ function Login () {
             .catch(error => alert(error.message))
     }
 
-    const register = (e) => {
+    const register = async(e) => {
         e.preventDefault();
-
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((auth) => {
-                console.log(auth);
-                if(auth) {
-                    history.push('/header');
-                }
-            })
-            .catch(error => alert(error.message))
+        try {
+            const res = await auth.createUserWithEmailAndPassword(email, password);
+            console.log(res.user);
+            const user = res.user;
+            console.log(`User ID = ${user.uid}`); 
+            const querySnapshot = await db
+                .collection("users")
+                .where("uid", "==", user.uid)
+                .get();
+            if(querySnapshot.docs.length === 0) {
+                await db.collection("users").add({
+                    uid: user.uid,
+                    addressField: [],
+                    createdAt: new Date(),
+                    email: user.email
+                })
+                console.log("Success!");
+            }  
+            if(res)
+                history.push('/header');         
+        } catch(err) {
+            alert(err.message);
+        }
         
     }
 
-    const signInGoogle = (e) => {
-        auth
-            .signInWithPopup(provider)
-            .then((auth) => {
-                console.log(auth);
+    const signInGoogle = async(e) => {
+        e.preventDefault();
+        try {
+            const res = await auth.signInWithPopup(provider);
+            console.log(res.user);
+            const user = res.user;
+            console.log(`User ID = ${user.uid}`);
+            const querySnapshot = await db
+                .collection("users")
+                .where("uid", "==", user.uid)
+                .get();
+            if(querySnapshot.docs.length === 0) {
+                await db.collection("users").add({
+                    uid: user.uid,
+                    addressField: [],
+                    createdAt: new Date(),
+                    email: user.email
+                })
+                console.log("Success!");
+            }
+            if(res)
                 history.push('/header');
-            })
-            .catch(error => alert(error.message))
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
