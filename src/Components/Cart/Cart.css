@@ -10,3 +10,8 @@
     padding: 10px;
     border-bottom: 1px solid lightgray;
 }
+
+.checkout__btn {
+    cursor: pointer;
+    background: #f0c14b;
+}

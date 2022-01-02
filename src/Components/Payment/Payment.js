@@ -16,6 +16,7 @@ function Payment () {
                     setAdd(snapShot?.docs[0]?.data()?.addressField)
                 })
             console.log("Success!");
+            console.log(`${user.uid}`)
         }
         catch(error) {
             console.log(error.message)
