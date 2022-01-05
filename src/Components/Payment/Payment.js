@@ -64,6 +64,14 @@ function Payment () {
                 </div>
 
                 {/* Payment method using Stripe */}
+                <div className="payment__section">
+                    <div className="payment__title">
+                        <h3>Make Payment</h3>
+                    </div>
+                    <div className="payment__details">
+                        {/* stripe magic */}
+                    </div>
+                </div>
             </div>
         </div>
     )
