@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from '../../firebase';
 import { useStateValue } from "../../StateProvider";
+import { getTotal } from '../../reducer'; 
 import CartProduct from '../Cart/CartProduct';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import CurrencyFormat from "react-currency-format";
 import './Payment.css';
 
 function Payment () {
@@ -25,6 +28,20 @@ function Payment () {
     useEffect(() => {
         fetchAddress();
     }, [user])
+
+    const stripe = useStripe();
+    const element = useElements();
+    const [ error, setError ] = useState(null);
+    const [ disabled, setDisabled ] = useState(null);
+    const handleSubmit = (e) => {
+        // all stripe stuffs
+    }
+    const handleChange = (e) => {
+        // all changes in CardElement
+        // display errors
+        setDisabled(e.empty);
+        setError(e.error ? e.error.message : "");
+    }
     return(
         <div className="payment">
             <div className="payment__container">
@@ -70,6 +87,27 @@ function Payment () {
                     </div>
                     <div className="payment__details">
                         {/* stripe magic */}
+                        <form onSubmit={handleSubmit}>
+                            <CardElement onChange={handleChange}/>
+
+                            <div className="payment__priceContainer">
+                                <CurrencyFormat 
+                                    renderText={(value) => (
+                                    <>
+                                        <p>
+                                        Subtotal ({ cart.length } items): <strong>{ value }</strong>
+                                        </p>
+                                    </>
+                                    )}
+                                    decimalScale = {2}
+                                    value={getTotal(cart)}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    intlConfig={{ locale: 'en-IN', currency: 'INR' }}
+                                    prefix={'Rs '}
+                                />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
