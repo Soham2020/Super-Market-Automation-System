@@ -29,10 +29,13 @@ function Payment () {
         fetchAddress();
     }, [user])
 
+    // Payment area ^_^
     const stripe = useStripe();
     const element = useElements();
+    const [ successed, setSuccessed ] = useState(false);
+    const [ processing, setProcessing ] = useState(""); 
     const [ error, setError ] = useState(null);
-    const [ disabled, setDisabled ] = useState(null);
+    const [ disabled, setDisabled ] = useState(true);
     const handleSubmit = (e) => {
         // all stripe stuffs
     }
@@ -106,7 +109,11 @@ function Payment () {
                                     intlConfig={{ locale: 'en-IN', currency: 'INR' }}
                                     prefix={'Rs '}
                                 />
+                                <button disabled={ processing || disabled || successed }>
+                                    <span>{processing ? <p>Processing</p> : "Pay"}</span>
+                                </button>
                             </div>
+                            { error && <div>{error}</div> }
                         </form>
                     </div>
                 </div>
