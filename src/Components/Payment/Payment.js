@@ -35,7 +35,12 @@ function Payment () {
                     <div className="payment__address">
                         {
                             add.map((person) => (
-                                <p>{person}</p>
+                                <>
+                                <p>Name: {person.creatorName}</p>
+                                <p>Street: {person.road}</p>
+                                <p>Pincode: {person.code}</p>
+                                <p>Mobile: {person.phone}</p>
+                                </>
                             ))
                         }
                     </div>

@@ -13,7 +13,7 @@ function Cart () {
             <div className="checkout__left">
                 <div>
                     <h2 className="checkout__title">Your Cart</h2>
-                    <p>Hello, { user?.email } </p>
+                    <p>Hello, { user?.displayName } </p>
                     <small>Didn't Add your Address still now <button className="checkout__btn"
                         onClick={e => history.push('/address')}
                     >Click Here</button></small>
