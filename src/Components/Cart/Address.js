@@ -25,21 +25,9 @@ function Address () {
         setMobile(e.target.value);
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log(`${name} + ${street} + ${pin} + ${mobile}`);
-    //     history.push('/header');
-
-    // }
-
     const createAddress = async (e) => {
         e.preventDefault();
         try{
-            // const newClass = await db.collection("classes").add({
-            //     creatorUid: user.uid,
-            //     newName: name,
-            //     creatorName: user.displayName,
-            // });
             const userRef = await db
                 .collection("users")
                 .where("uid", "==", user.uid)
